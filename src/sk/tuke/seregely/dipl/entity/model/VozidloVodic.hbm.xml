@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2013 10:50:03 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping schema="gpsmonitoring">
+    <class name="sk.tuke.seregely.dipl.entity.model.VozidloVodic" table="`vozidlo-vodic`">
+        <composite-id name="id" class="sk.tuke.seregely.dipl.entity.model.VozidloVodicId">
+            <key-property name="cisloVodica" type="int">
+                <column name="cislo_vodica" />
+            </key-property>
+            <key-property name="idVozidla" type="int">
+                <column name="id_vozidla" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="vozidlo" class="sk.tuke.seregely.dipl.entity.model.Vozidlo" update="false" insert="false" fetch="select">
+            <column name="id_vozidla" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vodic" class="sk.tuke.seregely.dipl.entity.model.Vodic" update="false" insert="false" fetch="select">
+            <column name="cislo_vodica" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

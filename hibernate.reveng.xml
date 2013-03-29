@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-name="jazda"/>
+  <table-filter match-name="pracovisko"/>
+  <table-filter match-name="suradnica"/>
+  <table-filter match-name="tankovanie"/>
+  <table-filter match-name="uctovnik"/>
+  <table-filter match-name="veduci"/>
+  <table-filter match-name="vozidlo"/>
+  <table-filter match-name="vodic"/>
+  <table-filter match-name="vozidlo-vodic"/>
+  <table-filter match-name="zakazka"/>
+  <table-filter match-name="ciselnik_stavov"/>
+  <table-filter match-name="stav_jazdy"/>
+</hibernate-reverse-engineering>

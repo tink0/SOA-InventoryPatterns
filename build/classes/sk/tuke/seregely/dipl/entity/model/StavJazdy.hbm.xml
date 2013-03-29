@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 25, 2013 9:39:56 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping schema="gpsmonitoring">
+    <class name="sk.tuke.seregely.dipl.entity.model.StavJazdy" table="stav_jazdy">
+        <id name="idStavuJazdy" type="int">
+            <column name="id_stavu_jazdy" />
+            <generator class="sequence" >
+              <param name="sequence">stav_jazdy_id_seq</param>
+              </generator>
+        </id>
+        <many-to-one name="ciselnikStavov" class="sk.tuke.seregely.dipl.entity.model.CiselnikStavov" fetch="select">
+            <column name="id_stavu" not-null="true" />
+        </many-to-one>
+        <many-to-one name="uctovnik" class="sk.tuke.seregely.dipl.entity.model.Uctovnik" fetch="select">
+            <column name="uctovnik" />
+        </many-to-one>
+        <many-to-one name="vodic" class="sk.tuke.seregely.dipl.entity.model.Vodic" fetch="select">
+            <column name="vodic" />
+        </many-to-one>
+        <many-to-one name="veduci" class="sk.tuke.seregely.dipl.entity.model.Veduci" fetch="select">
+            <column name="veduci" />
+        </many-to-one>
+        <many-to-one name="jazda" class="sk.tuke.seregely.dipl.entity.model.Jazda" fetch="select">
+            <column name="id_jazdy" />
+        </many-to-one>
+        <property name="casZmeny" type="timestamp">
+            <column name="cas_zmeny" length="29" />
+        </property>
+        <property name="detailZmeny" type="string">
+            <column name="detail_zmeny" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

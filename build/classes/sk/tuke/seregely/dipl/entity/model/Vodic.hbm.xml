@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2013 10:50:03 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping schema="gpsmonitoring">
+    <class name="sk.tuke.seregely.dipl.entity.model.Vodic" table="vodic">
+        <id name="cisloVodica" type="int">
+            <column name="cislo_vodica" />
+             <generator class="sequence" >
+              <param name="sequence">vodic_id_seq</param>
+              </generator>
+        </id>
+        <many-to-one name="pracovisko" class="sk.tuke.seregely.dipl.entity.model.Pracovisko" fetch="select">
+            <column name="id_pracoviska" not-null="true" />
+        </many-to-one>
+        <property name="celeMeno" type="string">
+            <column name="cele_meno" length="100" />
+        </property>
+        <set name="vozidloVodics" table="`vozidlo-vodic`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cislo_vodica" not-null="true" />
+            </key>
+            <one-to-many class="sk.tuke.seregely.dipl.entity.model.VozidloVodic" />
+        </set>
+         <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <set name="stavJazdies" table="stav_jazdy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vodic" />
+            </key>
+            <one-to-many class="sk.tuke.seregely.dipl.entity.model.StavJazdy" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2013 10:50:03 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping schema="gpsmonitoring">
+    <class name="sk.tuke.seregely.dipl.entity.model.Zakazka" table="zakazka">
+        <id name="idZakazky" type="int">
+            <column name="id_zakazky" />
+             <generator class="sequence" >
+              <param name="sequence">zakazka_id_seq</param>
+              </generator>
+        </id>
+        <property name="nazov" type="string">
+            <column name="nazov" length="100" />
+        </property>
+        <property name="kod" type="string">
+            <column name="kod" length="100" />
+        </property>
+        <property name="popis" type="string">
+            <column name="popis" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

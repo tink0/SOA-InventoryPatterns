@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2013 10:50:03 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping schema="gpsmonitoring">
+    <class name="sk.tuke.seregely.dipl.entity.model.Jazda" table="jazda">
+        <id name="idJazdy" type="int">
+            <column name="id_jazdy" />
+            <generator class="sequence" >
+              <param name="sequence">jazda_id_seq</param>
+              </generator>
+        </id>
+        <property name="start" type="timestamp">
+            <column name="start" length="29" />
+        </property>
+        <property name="koniec" type="timestamp">
+            <column name="koniec" length="29" />
+        </property>
+        <property name="dlzkaJazdy" type="big_decimal">
+            <column name="dlzka_jazdy" precision="131089" scale="0" />
+        </property>
+        <property name="ocakavanaSpotreba" type="big_decimal">
+            <column name="ocakavana_spotreba" precision="131089" scale="0" />
+        </property>
+        <property name="sukromna" type="java.lang.Boolean">
+            <column name="sukromna" />
+        </property>
+        <property name="miestoStart" type="string">
+            <column name="miesto_start" />
+        </property>
+        <property name="miestoKoniec" type="string">
+            <column name="miesto_koniec" />
+        </property>
+        <set name="suradnicas" table="suradnica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_jazdy" />
+            </key>
+            <one-to-many class="sk.tuke.seregely.dipl.entity.model.Suradnica" />
+        </set>
+        <set name="stavJazdies" table="stav_jazdy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_jazdy" />
+            </key>
+            <one-to-many class="sk.tuke.seregely.dipl.entity.model.StavJazdy" />
+        </set>
+        <many-to-one name="vozidlo" class="sk.tuke.seregely.dipl.entity.model.Vozidlo" fetch="select">
+            <column name="id_vozidla" />
+        </many-to-one>
+        <many-to-one name="vodic" class="sk.tuke.seregely.dipl.entity.model.Vodic" fetch="select">
+            <column name="cislo_vodica" />
+        </many-to-one>
+        <many-to-one name="zakazka" class="sk.tuke.seregely.dipl.entity.model.Zakazka" fetch="select">
+            <column name="id_zakazky" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>
