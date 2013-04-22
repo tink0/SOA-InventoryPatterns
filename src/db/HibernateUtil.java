@@ -26,6 +26,7 @@ public class HibernateUtil {
            .addClass(Pracovisko.class)
            .addClass(StavJazdy.class)
            .addClass(CiselnikStavov.class)
+           .addClass(GpsExport.class)
    		 .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
    		 .setProperty("hibernate.connection.driver_class", 
    		 "org.postgresql.Driver")

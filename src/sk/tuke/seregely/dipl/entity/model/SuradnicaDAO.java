@@ -15,7 +15,7 @@ public class SuradnicaDAO extends EntityDAO<Suradnica> {
 	public List<Suradnica> findAllForRide(int idRide, Date from, Date to) {
 		try {
 			
-			Query query = super.getSession().createQuery("from Suradnica where id_jazdy = ? and cas >= ? and cas < ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Suradnica where id_jazdy = ? and cas >= ? and cas < ?");
 			query.setInteger(0, idRide);
 			query.setDate(1, from);
 			query.setDate(2, to);

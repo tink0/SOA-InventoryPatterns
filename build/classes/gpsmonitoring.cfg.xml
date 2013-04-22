@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password">superpass</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.default_schema">gpsmonitoring</property>
+        <property name="hibernate.default_schema">bugtracking</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     </session-factory>
 </hibernate-configuration>

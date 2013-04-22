@@ -31,18 +31,8 @@
         <property name="miestoKoniec" type="string">
             <column name="miesto_koniec" />
         </property>
-        <set name="suradnicas" table="suradnica" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_jazdy" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.Suradnica" />
-        </set>
-        <set name="stavJazdies" table="stav_jazdy" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_jazdy" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.StavJazdy" />
-        </set>
+    
+       
         <many-to-one name="vozidlo" class="sk.tuke.seregely.dipl.entity.model.Vozidlo" fetch="select">
             <column name="id_vozidla" />
         </many-to-one>

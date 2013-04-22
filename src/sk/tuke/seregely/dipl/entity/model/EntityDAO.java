@@ -14,40 +14,35 @@ import db.HibernateUtil;
 
 public class EntityDAO<T> {
 
-	private static final Log log = LogFactory.getLog(JazdaHome.class);
+	private static final Log log = LogFactory.getLog(EntityDAO.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
-	
-	private final Session session;
 	
 	private String className;
 	
 	private String idName;
 	
 	public EntityDAO(String name, String id) {
-		session = sessionFactory.openSession();
+		sessionFactory.openSession();
 		className = name;
 		idName = id;
 	}
+	
+	
 
 	protected SessionFactory getSessionFactory() {
-		HibernateUtil.getSessionFactory();
-		try {
+
 			return HibernateUtil.getSessionFactory();
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
-		}
+			
 	}
+	
 	public void persist(T transientInstance) {
-		log.debug("persisting Jazda instance");
 		Transaction tx = null;
+		Session session = sessionFactory.getCurrentSession();
 		try {
 			tx = session.beginTransaction();
 			session.persist(transientInstance);
 			tx.commit();
-			log.debug("persist successful");
 		} catch (HibernateException e) {
 			log.error("persist failed", e);
 			if(tx != null) tx.rollback();
@@ -55,20 +50,9 @@ public class EntityDAO<T> {
 		}
 	}
 
-	public void attachDirty(T instance) {
-		log.debug("attaching dirty instance");
-		try {
-			sessionFactory.openSession().saveOrUpdate(instance);
-			log.debug("attach successful");
-		} catch (RuntimeException re) {
-			log.error("attach failed", re);
-			throw re;
-		}
-	}
-
 
 	public void delete(T persistentInstance) {
-		log.debug("deleting instance");
+		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -83,11 +67,11 @@ public class EntityDAO<T> {
 	}
 
 	public T merge(T detachedInstance) {
-		log.debug("merging Jazda instance");
+		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();		
-			session.update(detachedInstance);
+			session.merge(detachedInstance);
 			log.debug("merge successful");
 			tx.commit();
 			return detachedInstance;
@@ -99,7 +83,8 @@ public class EntityDAO<T> {
 	}
 
 	public T findById(int id) {
-		log.debug("getting Jazda instance with id: " + id);
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
 		try {
 			Query query = session.createQuery("from "+className+" where "+idName+" = ?");
 			query.setInteger(0, id);
@@ -108,14 +93,17 @@ public class EntityDAO<T> {
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			}
+			
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
+		
 			throw re;
 		}
 	}
 
 	public List<T> findAll() {
+		Session session = sessionFactory.getCurrentSession();
 		try {
 			Query query = session.createQuery("from "+className);
 			List<T> jazdy = query.list();
@@ -125,10 +113,7 @@ public class EntityDAO<T> {
 		} 
 		return null;
 	}
-	
-	public Session getSession() {
-		return session;
-	}
+
 	
 	public String getClassName() {
 		return className;

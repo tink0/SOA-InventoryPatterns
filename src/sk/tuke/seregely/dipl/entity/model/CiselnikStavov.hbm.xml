@@ -13,11 +13,6 @@
         <property name="nazovStavu" type="string">
             <column name="nazov_stavu" length="100" />
         </property>
-        <set name="stavJazdies" table="stav_jazdy" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_stavu" not-null="true" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.StavJazdy" />
-        </set>
+      
     </class>
 </hibernate-mapping>

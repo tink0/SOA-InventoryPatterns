@@ -15,7 +15,7 @@ public class JazdaDAO extends EntityDAO<Jazda>{
 	public List<Jazda> findAllForVehicle(int idVehicle, Date from, Date to) {
 		try {
 			
-			Query query = super.getSession().createQuery("from Jazda where id_vozidla = ? and start >= ? and koniec < ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Jazda where id_vozidla = ? and start >= ? and koniec < ?");
 			query.setInteger(0, idVehicle);
 			query.setDate(1, from);
 			query.setDate(2, to);
@@ -29,7 +29,7 @@ public class JazdaDAO extends EntityDAO<Jazda>{
 	public List<Jazda> findAllForZakazka(int idZakazky) {
 		try {
 			
-			Query query = super.getSession().createQuery("from Jazda where id_zakazky = ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Jazda where id_zakazky = ?");
 			query.setInteger(0, idZakazky);
 			List<Jazda> jazdy = query.list();
 			return jazdy;
@@ -41,7 +41,7 @@ public class JazdaDAO extends EntityDAO<Jazda>{
 	public List<Jazda> findAllForVodic(int idVodica) {
 		try {
 			
-			Query query = super.getSession().createQuery("from Jazda where cislo_vodica = ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Jazda where cislo_vodica = ?");
 			query.setInteger(0, idVodica);
 			
 			List<Jazda> jazdy = query.list();
@@ -55,7 +55,7 @@ public class JazdaDAO extends EntityDAO<Jazda>{
 	public List<Jazda> findAllForVodicAndVozidlo(int idVodica, int idVozidla) {
 		try {
 			
-			Query query = super.getSession().createQuery("from Jazda where cislo_vodica = ? and id_vozidla = ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Jazda where cislo_vodica = ? and id_vozidla = ?");
 			query.setInteger(0, idVodica);
 			query.setInteger(1, idVozidla);
 			
@@ -68,7 +68,7 @@ public class JazdaDAO extends EntityDAO<Jazda>{
 	}
 	public List<Jazda> findInState(int idVozidla, int idState, Date from, Date to, int stav) {
 		try {
-			Query query = super.getSession().createQuery("from Jazda j inner join stav_jazdy s where j.id_vozidla = ? and j.start >= ? and j.koniec < ? and s.id_stavu = ?");
+			Query query = super.getSessionFactory().getCurrentSession().createQuery("from Jazda j inner join stav_jazdy s where j.id_vozidla = ? and j.start >= ? and j.koniec < ? and s.id_stavu = ?");
 			query.setInteger(0, idVozidla);
 			query.setDate(1, from);
 			query.setDate(2, to);

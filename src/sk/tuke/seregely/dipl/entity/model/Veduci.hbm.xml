@@ -19,11 +19,5 @@
          <property name="email" type="string">
             <column name="email" length="50" />
         </property>
-        <set name="stavJazdies" table="stav_jazdy" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="veduci" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.StavJazdy" />
-        </set>
     </class>
 </hibernate-mapping>

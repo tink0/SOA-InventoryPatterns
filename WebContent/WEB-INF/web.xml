@@ -21,7 +21,7 @@
   <servlet>
     <display-name>Vodic</display-name>
     <servlet-name>Vodic</servlet-name>
-    <servlet-class>sk.tuke.seregely.dipl.services.entities.VozidloService</servlet-class>
+    <servlet-class>sk.tuke.seregely.dipl.services.entities.VodicService</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Vodic</servlet-name>
@@ -118,12 +118,12 @@
     <url-pattern>/StavJazdy</url-pattern>
   </servlet-mapping>
     <servlet>
-    <display-name>HelloWorld</display-name>
-    <servlet-name>HelloWorld</servlet-name>
-    <servlet-class>org.jboss.samples.webservices.HelloWorld</servlet-class>
+    <display-name>GpsExport</display-name>
+    <servlet-name>GpsExport</servlet-name>
+    <servlet-class>sk.tuke.seregely.dipl.services.utilities.GpsExportService</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelloWorld</servlet-name>
-    <url-pattern>/HelloWOrld</url-pattern>
+    <servlet-name>GpsExport</servlet-name>
+    <url-pattern>/GpsExport</url-pattern>
   </servlet-mapping>
 </web-app>

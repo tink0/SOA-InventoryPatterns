@@ -11,23 +11,7 @@
         <property name="nazov" type="string">
             <column name="nazov" length="100" />
         </property>
-        <set name="veducis" table="veduci" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_pracoviska" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.Veduci" />
-        </set>
-        <set name="uctovniks" table="uctovnik" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_pracoviska" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.Uctovnik" />
-        </set>
-        <set name="vodics" table="vodic" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_pracoviska" not-null="true" />
-            </key>
-            <one-to-many class="sk.tuke.seregely.dipl.entity.model.Vodic" />
-        </set>
+        
+      
     </class>
 </hibernate-mapping>

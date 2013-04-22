@@ -19,8 +19,6 @@ public class EmailSender {
 	@WebMethod()
 	public void send(String recipient, String subject, String content) {
 	   try {
-		   	//regex - [a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+
-		   
 			Context ctx = new InitialContext();
 			Session session = (Session) ctx.lookup("java:/Gmail");
 			Message message = new MimeMessage(session);

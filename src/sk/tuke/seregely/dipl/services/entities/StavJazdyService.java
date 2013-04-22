@@ -9,6 +9,9 @@ import sk.tuke.seregely.dipl.entity.model.CiselnikStavov;
 import sk.tuke.seregely.dipl.entity.model.EntityDAO;
 import sk.tuke.seregely.dipl.entity.model.Jazda;
 import sk.tuke.seregely.dipl.entity.model.StavJazdy;
+import sk.tuke.seregely.dipl.entity.model.Uctovnik;
+import sk.tuke.seregely.dipl.entity.model.Veduci;
+import sk.tuke.seregely.dipl.entity.model.Vodic;
 
 @WebService()
 public class StavJazdyService {
@@ -26,7 +29,7 @@ public class StavJazdyService {
 		
 		novyStav.setCiselnikStavov(ciselnikStavov);
 		novyStav.setJazda(jazda);
-		novyStav.setCasZmeny(casZmeny);
+		novyStav.setCasZmeny(new Date());
 		novyStav.setDetailZmeny(detailZmeny);
 		
 		stavJazdyDAO.persist(novyStav);
@@ -43,6 +46,24 @@ public class StavJazdyService {
 	
 	@WebMethod()
 	public StavJazdy update(StavJazdy stavJazdy) {
+		stavJazdy.setCasZmeny(new Date());
 		return stavJazdyDAO.merge(stavJazdy);
+	}
+	
+	@WebMethod()
+	public StavJazdy updateWithVeduciVodic(StavJazdy sJ, Veduci veduci, Vodic vodic) {
+		sJ.setCasZmeny(new Date());
+		sJ.setVeduci(veduci);
+		sJ.setVodic(vodic);
+		stavJazdyDAO.merge(sJ);
+		return sJ;
+	}
+	
+	@WebMethod()
+	public StavJazdy updateWithUctovnik(StavJazdy sJ, Uctovnik uctovnik) {
+		sJ.setCasZmeny(new Date());
+		sJ.setUctovnik(uctovnik);
+		stavJazdyDAO.merge(sJ);
+		return sJ;
 	}
 }
